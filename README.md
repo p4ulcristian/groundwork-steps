@@ -8,7 +8,7 @@ a refusal. One file for both sides, `groundwork-steps.api` (`.cljc`), with
 no dependencies.
 
 ```clojure
-io.github.p4ulcristian/groundwork-steps {:git/tag "v0.1.0" :git/sha "SHA"}
+io.github.p4ulcristian/groundwork-steps {:git/tag "v0.1.0" :git/sha "ed9458e"}
 ```
 
 ## The api
