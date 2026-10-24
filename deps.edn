@@ -1,0 +1,14 @@
+;; groundwork-steps: a handler's work as a list of steps over one map, and the shape of
+;; the answer they end with, shared by the groundwork libraries so none needs another.
+;; One tree for both languages: source-code/groundwork_steps/api.cljc. No dependencies.
+{:paths ["source-code"]
+
+ :deps
+ {}
+
+ :aliases
+ {;; the tests, on the JVM (the one file is .cljc):  clojure -X:test
+  :test {:extra-paths ["test-code"]
+         :extra-deps  {io.github.cognitect-labs/test-runner {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :exec-fn     cognitect.test-runner.api/test
+         :exec-args   {:dirs ["test-code"]}}}}
