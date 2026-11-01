@@ -48,7 +48,12 @@ own: `:groundwork-steps/too-many {:retry-after-ms n}`,
 `:groundwork-steps/failed` (a bug; its details are in the log under the
 request id), `:groundwork-steps/invalid {:errors …}`, and the browser's
 `:groundwork-steps/no-answer {:http-status n}` and
-`:groundwork-steps/unfit {:errors …}`.
+`:groundwork-steps/unfit {:errors …}`. The browser gives two of the
+server's too, with no request id: `:groundwork-steps/invalid` for params
+that don't fit, before anything is sent (groundwork-bridge's
+`send-message!`), and `:groundwork-steps/failed` for a write whose send
+threw or failed (groundwork-screens), its details in the browser's error
+report.
 
 ```clojure
 (require '[groundwork-steps.api :as steps])

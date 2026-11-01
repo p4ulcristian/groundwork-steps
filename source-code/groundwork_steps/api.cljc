@@ -47,12 +47,17 @@
 (def refusals
   "The reasons every answer may carry besides its handler's own, each
    with the shape of its data, nil for none. groundwork-bridge gives them:
-   on the server the first three, in the browser the last two.
+   on the server the first three, in the browser invalid and the last
+   two; groundwork-screens gives failed in the browser.
    :groundwork-steps/too-many   over the handler's :rate-limit: {:retry-after-ms n}, how long until one more is let through
    :groundwork-steps/failed     a bug: a step threw, no step answered, an answer or a refusal didn't fit its shape,
                                 a reason the handler doesn't declare, a name no handler has; the details are in
-                                the log, under the refusal's :groundwork-steps/request-id
-   :groundwork-steps/invalid    the params didn't fit the :params-shape: {:errors {:shop/id [\"should be an id\"]}}
+                                the log, under the refusal's :groundwork-steps/request-id. In the browser
+                                (groundwork-screens): a write's send threw or its promise failed; the details
+                                are the browser's error report, and there is no request id
+   :groundwork-steps/invalid    the params didn't fit the :params-shape: {:errors {:shop/id [\"should be an id\"]}};
+                                in the browser (groundwork-bridge's send-message!), before anything is sent,
+                                with no request id
    :groundwork-steps/no-answer  no answer came: the network, or a body that isn't the server's JSON (a proxy's
                                 502, a 413): {:http-status n}, nil when no response came at all
    :groundwork-steps/unfit      the server's answer didn't fit the browser's shapes, or its name has none:
